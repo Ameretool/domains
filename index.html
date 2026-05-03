@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Site Ready</title>
+    <style>
+        /* Minimal reset for mobile */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 1rem;
+        }
+        .message {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        /* Optional dark mode follows system */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0f172a;
+                color: #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        ✨ Site is running ✨<br>
+        <span style="font-size: 0.85rem; opacity: 0.6;">DomainName.Plus</span>
+    </div>
+</body>
+</html>
