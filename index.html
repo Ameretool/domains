@@ -1,45 +1,236 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Site Ready</title>
+    <title>DomainName.Plus · Fast & Reliable</title>
     <style>
-        /* Minimal reset for mobile */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             min-height: 100vh;
+            background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-            padding: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
         }
-        .message {
+
+        /* 漂浮光晕球体 */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.1));
+            top: -10%;
+            left: -10%;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+        .orb-2 {
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.35), rgba(16, 185, 129, 0.1));
+            bottom: -15%;
+            right: -10%;
+            animation: floatOrb 25s infinite alternate-reverse ease-in-out;
+        }
+        .orb-3 {
+            width: 25vw;
+            height: 25vw;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.3), rgba(249, 115, 22, 0.08));
+            top: 30%;
+            left: 60%;
+            animation: floatOrb 18s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+            100% { transform: translate(5%, 8%) scale(1.1); opacity: 0.9; }
+        }
+
+        /* 主卡片 — 与背景融合 */
+        .glass-card {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            width: 100%;
+            background: rgba(224, 234, 252, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.08);
+            padding: 2.2rem 2rem 2.8rem;
             text-align: center;
-            font-size: 1.2rem;
-            opacity: 0.8;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
-        /* Optional dark mode follows system */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #0f172a;
-                color: #e2e8f0;
+
+        /* 星星闪烁 */
+        .star {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.6; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 8px gold; }
+        }
+
+        /* 域名 — 增强渐变 + 流动光效动画 */
+        .domain {
+            font-size: clamp(2.2rem, 10vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1E2A6E, #4F46E5, #8B5CF6, #4F46E5);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0.5rem 0 1rem;
+            word-break: break-word;
+            animation: shimmer 4s infinite linear;
+        }
+
+        /* 流动光效 */
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* 状态徽章 */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .pulse-light {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #10b981;
+            animation: pulse-green 1.2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { opacity: 0.5; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .desc {
+            color: #2d3a5e;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 1rem 0 1.5rem;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 三个跳动点 */
+        .dot-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .dot-group span {
+            width: 10px;
+            height: 10px;
+            background: #4f46e5;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounceUp 1s infinite ease-in-out both;
+        }
+        .dot-group span:nth-child(1) { animation-delay: -0.32s; background: #8b5cf6; }
+        .dot-group span:nth-child(2) { animation-delay: -0.16s; background: #4f46e5; }
+        .dot-group span:nth-child(3) { background: #06b6d4; }
+        @keyframes bounceUp {
+            0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+            40% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        .footer-links {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #5b6c9e;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 1.2rem;
+        }
+        .footer-links a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 560px) {
+            .glass-card {
+                padding: 1.5rem;
+            }
+            .star {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="message">
-        ✨ Site is running ✨<br>
-        <span style="font-size: 0.85rem; opacity: 0.6;">DomainName.Plus</span>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="glass-card">
+        <div class="star">✨</div>
+        <div class="domain">DomainName.Plus</div>
+        <div class="badge">
+            <span class="pulse-light"></span>
+            <span>⚡ Global Edge Network · Instant</span>
+        </div>
+        <div class="desc">
+            Lightning-fast, secure, and always online.<br>
+            Your gateway to the next generation web.
+        </div>
+        <div class="dot-group">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="footer-links">
+            <span>© 2025 DomainName.Plus</span>
+            <a href="https://domainname.plus" target="_blank">Home</a>
+            <a href="mailto:hello@domainname.plus">Contact</a>
+        </div>
     </div>
 </body>
 </html>
